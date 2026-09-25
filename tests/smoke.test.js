@@ -138,7 +138,7 @@ describe('website smoke test', () => {
     // gallery owns no project of its own (every member is borrowed, same as
     // amulets), and items[0] happens to be a Discover Islamic Art record
     // (coins-medals-data 1.0.1).
-    // inventory-app#1728: `.source-reference` is `RecordSheetView`'s own
+    // inventory-app#1728: `.source-reference` is `ItemDetailView`'s own
     // `.mwnf-sheet-source` block now, built from the family data layer's
     // `itemSheet.sourceDatabase` spec key rather than local markup.
     expect(host.querySelector('.mwnf-sheet-source').textContent).toContain('Discover Islamic Art')
@@ -154,7 +154,7 @@ describe('website smoke test', () => {
   it('colours and names the source-database chip from the manifest projects section', async () => {
     const { app, host } = await mountSite('#/item/d3cd72eb-4da3-52ee-8fe8-e450b2d00a90')
     await vi.waitFor(() => expect(host.querySelector('.mwnf-sheet-source .mwnf-chip')).not.toBeNull(), { timeout: 20000 })
-    // inventory-app#1728: `RecordSheetView`'s own `.mwnf-sheet-source__line`
+    // inventory-app#1728: `ItemDetailView`'s own `.mwnf-sheet-source__line`
     // renders the chip as a decorative, `aria-hidden` colour dot beside the
     // text — the project name is the line's own text now, not the chip
     // span's, unlike the local markup this replaces.
@@ -188,7 +188,7 @@ describe('website smoke test', () => {
   // list of project ids, not a literal legacy project-code check — it
   // must show for that project's own records and stay off everyone else's.
   // inventory-app#1728: `.links-container`/`.info-eiac` are
-  // `RecordSheetView`'s own `.mwnf-sheet-source`/`.mwnf-sheet-notice` now.
+  // `ItemDetailView`'s own `.mwnf-sheet-source`/`.mwnf-sheet-notice` now.
   it('shows the explore-partner notice only for the project dataset.config.js lists', async () => {
     const epm = await mountSite('#/item/c390c585-bede-5ad5-9758-01796227dd08')
     await vi.waitFor(() => expect(epm.host.querySelector('.mwnf-sheet-source')).not.toBeNull(), { timeout: 20000 })
@@ -205,7 +205,7 @@ describe('website smoke test', () => {
   // artistic-introduction blocks are purely manifest-driven now — the
   // importer's URL map (scripts/importer/src/utils/project-urls.ts, #1753)
   // fills `manifest.projects[*].related_database_url` /
-  // `artistic_introduction_url` at import time, and `RecordSheetView`'s
+  // `artistic_introduction_url` at import time, and `ItemDetailView`'s
   // `related.databaseLabel`/`.artisticIntroductionLabel` (composables/
   // gallery.js's `itemSheet` spec, inventory-app#1728) render a block iff
   // that project's URL is non-null. coins-medals-data 1.0.1 carries both URLs
